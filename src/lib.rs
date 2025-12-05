@@ -14,7 +14,10 @@
 #[cfg(not(feature = "std"))]
 mod coreprovider {
     extern crate core;
-    pub use core::{fmt, cmp};
+
+    pub use core::cmp;
+    #[cfg(not(feature = "certified_subset"))]
+    pub use core::fmt;
 }
 
 #[cfg(feature = "std")]
@@ -34,12 +37,14 @@ impl Clone for Void {
     }
 }
 
+#[cfg(not(feature = "certified_subset"))]
 impl fmt::Debug for Void {
     fn fmt(&self, _: &mut fmt::Formatter) -> fmt::Result {
         unreachable(*self)
     }
 }
 
+#[cfg(not(feature = "certified_subset"))]
 impl fmt::Display for Void {
     fn fmt(&self, _: &mut fmt::Formatter) -> fmt::Result {
         unreachable(*self)
