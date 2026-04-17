@@ -25,7 +25,7 @@ mod coreprovider {
     pub use std::{fmt, cmp, error};
 }
 
-use coreprovider::*;
+use crate::coreprovider::*;
 
 /// The empty type for cases which can't occur.
 #[derive(Copy)]
@@ -69,7 +69,7 @@ impl error::Error for Void {
         unreachable(*self)
     }
 
-    fn cause(&self) -> Option<&error::Error> {
+    fn cause(&self) -> Option<&dyn error::Error> {
         unreachable(*self)
     }
 }
