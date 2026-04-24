@@ -31,6 +31,7 @@ use crate::coreprovider::*;
 #[derive(Copy)]
 pub enum Void { }
 
+#[allow(clippy::non_canonical_clone_impl)] // Void is uninhabited; unreachable() is used for consistency with all other trait impls in this crate.
 impl Clone for Void {
     fn clone(&self) -> Void {
         unreachable(*self)
